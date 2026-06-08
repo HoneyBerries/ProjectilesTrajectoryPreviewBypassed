@@ -1,13 +1,14 @@
 plugins {
 	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
+	id "me.modmuss50.mod-publish-plugin" version "2.0.0"
 }
 
 version = project.mod_version
 group = project.maven_group
 
 base {
-	archivesName = project.archives_base_name
+	archivesName = project.archives_base_name + "+" + project.minecraft_version
 }
 
 repositories {
@@ -32,13 +33,12 @@ loom {
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	mappings loom.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
-	
 }
 
 processResources {
@@ -87,4 +87,40 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
+}
+
+publishMods {
+    file = remapJar.archiveFile
+    changelog = providers.fileContents(layout.projectDirectory.file("CHANGELOG.md")).asText.get()
+    type = STABLE
+	version = project.mod_version
+    modLoaders.add("fabric")
+	modLoaders.add("quilt")
+
+    curseforge {
+		displayName = file.map { it.asFile.name }
+        projectId = project.curseforge_id
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        
+		minecraftVersionRange {
+            start = "1.21.1"
+            end = "1.21.1"
+        }
+
+        client = true
+        server = false
+        requires("fabric-api")
+    }
+    modrinth {
+		displayName = "Projectile Trajectory Preview $project.mod_version"
+        projectId = project.modrinth_id
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+
+		minecraftVersionRange {
+            start = "1.21.1"
+            end = "1.21.1"
+        }
+
+		requires("fabric-api")
+    }
 }

@@ -1,11 +1,11 @@
-package fr.madu59.config.configscreen;
+package fr.madu59.ptp.config.configscreen;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 
 public class ModMenuApiImpl implements ModMenuApi {
     @Override
-    public ConfigScreenFactory<ptpConfigScreen> getModConfigScreenFactory() {
-        return ptpConfigScreen::new;
+    public ConfigScreenFactory<PtpConfigScreen> getModConfigScreenFactory() {
+        return PtpConfigScreen::new;
     }
 }

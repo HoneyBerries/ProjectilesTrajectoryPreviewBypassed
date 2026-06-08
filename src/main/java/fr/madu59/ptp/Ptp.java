@@ -1,4 +1,4 @@
-package fr.madu59;
+package fr.madu59.ptp;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -7,10 +7,10 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.madu59.HandshakeNetworking.HANDSHAKE_C2SPayload;
-import fr.madu59.HandshakeNetworking.HANDSHAKE_S2CPayload;
+import fr.madu59.ptp.HandshakeNetworking.HANDSHAKE_C2SPayload;
+import fr.madu59.ptp.HandshakeNetworking.HANDSHAKE_S2CPayload;
 
-public class ptp implements ModInitializer {
+public class Ptp implements ModInitializer {
 	public static final String MOD_ID = "ptp";
 
 	// This logger is used to write text to the console and the log file.
@@ -31,7 +31,7 @@ public class ptp implements ModInitializer {
             (payload, context) -> {
                 // Send back a reply packet
                 ServerPlayNetworking.send(context.player(), new HANDSHAKE_S2CPayload("Is installed on server"));
-				System.out.println("[PTP] Sending handshake to player...");
+				LOGGER.info("[PTP] Sending handshake to player...");
             });
 
 		LOGGER.info("Hello Fabric world!");
