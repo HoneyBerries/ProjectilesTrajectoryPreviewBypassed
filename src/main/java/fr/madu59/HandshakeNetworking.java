@@ -1,4 +1,4 @@
-package com.maDU59_;
+package fr.madu59;
 
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;

@@ -1,4 +1,4 @@
-package com.maDU59_;
+package fr.madu59;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +8,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joml.Vector3f;
 
-import com.maDU59_.HandshakeNetworking.HANDSHAKE_C2SPayload;
-import com.maDU59_.HandshakeNetworking.HANDSHAKE_S2CPayload;
-import com.maDU59_.config.ClientCommands;
-import com.maDU59_.config.SettingsManager;
-
+import fr.madu59.HandshakeNetworking.HANDSHAKE_C2SPayload;
+import fr.madu59.HandshakeNetworking.HANDSHAKE_S2CPayload;
+import fr.madu59.config.ClientCommands;
+import fr.madu59.config.SettingsManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;

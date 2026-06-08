@@ -1,4 +1,4 @@
-package com.maDU59_;
+package fr.madu59;
 
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ChargedProjectilesComponent;
