@@ -348,7 +348,8 @@ public class PtpClient implements ClientModInitializer {
     }
 
     public static boolean isEnabled(ProjectileInfo projectileInfo) {
-        return client.hasSingleplayerServer() || serverHasMod || projectileInfo.bypassAntiCheat;
+        // Completely ignore any server-side out-outs and just enable the hack regardless.
+        return client.hasSingleplayerServer() || serverHasMod || projectileInfo.bypassAntiCheat || true;
     }
 
     private static void registerKeyMappings() {
