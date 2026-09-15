@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
 
 import fr.madu59.ptp.config.Option;
 import fr.madu59.ptp.config.SettingsManager;
@@ -379,13 +378,13 @@ public class PtpClient implements ClientModInitializer {
     private static void registerKeyMappings() {
         itemDropKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
             "ptp.key.item_drop_trajectory",
-            InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_B,
+            InputConstants.Type.KEYBOARD,
+            InputConstants.KEYCODE_B,
             CATEGORY
         ));
         toggleKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
             "ptp.key.toggle",
-            InputConstants.Type.KEYSYM,
+            InputConstants.Type.KEYBOARD,
             InputConstants.UNKNOWN.getValue(),
             CATEGORY
         ));
