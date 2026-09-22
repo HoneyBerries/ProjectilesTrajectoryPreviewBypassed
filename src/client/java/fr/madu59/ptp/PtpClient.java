@@ -70,24 +70,24 @@ public class PtpClient implements ClientModInitializer {
         registerKeyMappings();
 
         // Reset handshake state on join
-        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-            serverHasMod = false;
-
-            // Always enabled in singleplayer
-            if (client.hasSingleplayerServer() || client.getCurrentServer().isLan()) {
-                serverHasMod = true;
-                return;
-            }
-
-            // Send handshake to server
-            if(ClientPlayNetworking.canSend(HANDSHAKE_C2SPayload.ID)) {
-                LOGGER.info("[PTP] Sending handshake to server...");
-                ClientPlayNetworking.send(new HANDSHAKE_C2SPayload("Check if is installed on server"));
-            }
-            else{
-                LOGGER.info("[PTP] Can't send handshake to server! Server mod might be too old or missing.");
-            }
-        });
+        // ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+        //     serverHasMod = false;
+        //
+        //     // Always enabled in singleplayer
+        //     if (client.hasSingleplayerServer() || client.getCurrentServer().isLan()) {
+        //         serverHasMod = true;
+        //         return;
+        //     }
+        //
+        //     // Send handshake to server
+        //     if(ClientPlayNetworking.canSend(HANDSHAKE_C2SPayload.ID)) {
+        //         LOGGER.info("[PTP] Sending handshake to server...");
+        //         ClientPlayNetworking.send(new HANDSHAKE_C2SPayload("Check if is installed on server"));
+        //     }
+        //     else{
+        //         LOGGER.info("[PTP] Can't send handshake to server! Server mod might be too old or missing.");
+        //     }
+        // });
 
         // Receive handshake reply
         ClientPlayNetworking.registerGlobalReceiver(HANDSHAKE_S2CPayload.ID,
