@@ -56,7 +56,7 @@ public class PtpClient implements ClientModInitializer {
 
     private static final Minecraft client = Minecraft.getInstance();
     public static final Logger LOGGER = LogManager.getLogger("ptpClient");
-    private static boolean serverHasMod = false;
+    private static boolean serverHasMod = true;
     private static KeyMapping itemDropKey;
     private static KeyMapping toggleKey;
     private static InteractionHand interactionHand = InteractionHand.MAIN_HAND;
@@ -364,8 +364,7 @@ public class PtpClient implements ClientModInitializer {
     }
 
     public static boolean isEnabled(ProjectileData projectileData) {
-        // Completely ignore any server-side opt-outs and just enable the hack regardless.
-        return client.hasSingleplayerServer() || serverHasMod || projectileData.bypassAntiCheat || true;
+        return client.hasSingleplayerServer() || serverHasMod;
     }
 
     public static float getTickProgress(){
