@@ -56,7 +56,7 @@ public class PtpClient implements ClientModInitializer {
 
     private static final Minecraft client = Minecraft.getInstance();
     public static final Logger LOGGER = LogManager.getLogger("ptpClient");
-    private static boolean serverHasMod = true;
+    private static final boolean serverHasMod = true;
     private static KeyMapping itemDropKey;
     private static KeyMapping toggleKey;
     private static InteractionHand interactionHand = InteractionHand.MAIN_HAND;
@@ -90,15 +90,13 @@ public class PtpClient implements ClientModInitializer {
         // });
 
         // Receive handshake reply
-        ClientPlayNetworking.registerGlobalReceiver(HANDSHAKE_S2CPayload.ID,
-            (payload, context) -> {
-                LOGGER.info("[PTP] Received handshake from server!");
-                serverHasMod = true;
-        });
+        // ClientPlayNetworking.registerGlobalReceiver(HANDSHAKE_S2CPayload.ID,
+        //     (payload, context) -> {
+        //         LOGGER.info("[PTP] Received handshake from server!");
+        //         serverHasMod = true;
+        // });
         
-        LevelRenderEvents.AFTER_SOLID_FEATURES.register(context -> {
-            renderOverlay(context);
-        });
+        LevelRenderEvents.AFTER_SOLID_FEATURES.register(PtpClient::renderOverlay);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleKey.consumeClick()) {

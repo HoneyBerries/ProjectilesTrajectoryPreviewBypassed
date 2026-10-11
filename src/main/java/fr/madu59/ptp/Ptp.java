@@ -24,15 +24,15 @@ public class Ptp implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		PayloadTypeRegistry.serverboundPlay().register(HANDSHAKE_C2SPayload.ID, HANDSHAKE_C2SPayload.CODEC);
-		PayloadTypeRegistry.clientboundPlay().register(HANDSHAKE_S2CPayload.ID, HANDSHAKE_S2CPayload.CODEC);
+		// PayloadTypeRegistry.serverboundPlay().register(HANDSHAKE_C2SPayload.ID, HANDSHAKE_C2SPayload.CODEC);
+		// PayloadTypeRegistry.clientboundPlay().register(HANDSHAKE_S2CPayload.ID, HANDSHAKE_S2CPayload.CODEC);
 
-		ServerPlayNetworking.registerGlobalReceiver(HANDSHAKE_C2SPayload.ID,
-            (payload, context) -> {
-                // Send back a reply packet
-                ServerPlayNetworking.send(context.player(), new HANDSHAKE_S2CPayload("Is installed on server"));
-				LOGGER.info("[PTP] Sending handshake to player...");
-            });
+		// ServerPlayNetworking.registerGlobalReceiver(HANDSHAKE_C2SPayload.ID,
+		//     (payload, context) -> {
+		//         // Send back a reply packet
+		//         ServerPlayNetworking.send(context.player(), new HANDSHAKE_S2CPayload("Is installed on server"));
+		// 		LOGGER.info("[PTP] Sending handshake to player...");
+		//     });
 
 		LOGGER.info("Hello Fabric world!");
 	}
